@@ -1,5 +1,7 @@
 package com.moqi.d.d16.d1601;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * PossibleReordering
  * <p/>
@@ -8,6 +10,7 @@ package com.moqi.d.d16.d1601;
  *
  * @author Brian Goetz and Tim Peierls
  */
+@Slf4j
 public class PossibleReordering {
     static int x = 0, y = 0;
     static int a = 0, b = 0;
@@ -29,6 +32,6 @@ public class PossibleReordering {
         other.start();
         one.join();
         other.join();
-        System.out.println("( " + x + "," + y + ")");
+        log.info("( " + x + "," + y + ")");
     }
 }

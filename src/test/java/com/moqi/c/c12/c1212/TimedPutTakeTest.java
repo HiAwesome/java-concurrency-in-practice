@@ -2,6 +2,7 @@ package com.moqi.c.c12.c1212;
 
 import com.moqi.c.c12.c1205.PutTakeTest;
 import com.moqi.c.c12.c1211.BarrierTimer;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CyclicBarrier;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.CyclicBarrier;
  *
  * @author Brian Goetz and Tim Peierls
  */
+@Slf4j
 public class TimedPutTakeTest extends PutTakeTest {
     private BarrierTimer timer = new BarrierTimer();
 
@@ -27,15 +29,15 @@ public class TimedPutTakeTest extends PutTakeTest {
     public static void main(String[] args) throws Exception {
         int tpt = 100000; // trials per thread 每个线程中的测试次数
         for (int cap = 1; cap <= 1000; cap *= 10) {
-            System.out.println("Capacity: " + cap);
+            log.info("Capacity: " + cap);
             for (int pairs = 1; pairs <= 128; pairs *= 2) {
                 TimedPutTakeTest t = new TimedPutTakeTest(cap, pairs, tpt);
-                System.out.print("Pairs: " + pairs + "\t");
+                log.info("Pairs: " + pairs + "\t");
                 t.test();
-                System.out.print("\t");
+                log.info("\t");
                 Thread.sleep(1000);
                 t.test();
-                System.out.println();
+                log.info("\n");
                 Thread.sleep(1000);
             }
         }
@@ -52,7 +54,7 @@ public class TimedPutTakeTest extends PutTakeTest {
             barrier.await();
             barrier.await();
             long nsPerItem = timer.getTime() / (nPairs * (long) nTrials);
-            System.out.print("Throughput: " + nsPerItem + " ns/item");
+            log.info("Throughput: " + nsPerItem + " ns/item");
             assertEquals(putSum.get(), takeSum.get());
         } catch (Exception e) {
             throw new RuntimeException(e);

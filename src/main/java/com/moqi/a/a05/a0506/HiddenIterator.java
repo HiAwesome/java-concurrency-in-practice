@@ -1,5 +1,6 @@
 package com.moqi.a.a05.a0506;
 
+import lombok.extern.slf4j.Slf4j;
 import net.jcip.annotations.GuardedBy;
 
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import java.util.Set;
  *
  * @author Brian Goetz and Tim Peierls
  */
+@Slf4j
 public class HiddenIterator {
     @GuardedBy("this")
     private final Set<Integer> set = new HashSet<>();
@@ -32,6 +34,6 @@ public class HiddenIterator {
             add(r.nextInt());
         }
 
-        System.out.println("DEBUG: added ten elements to " + set);
+        log.info("DEBUG: added ten elements to " + set);
     }
 }

@@ -1,5 +1,7 @@
 package com.moqi.a.a03.a0301;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * NoVisibility
  * <p/>
@@ -8,7 +10,7 @@ package com.moqi.a.a03.a0301;
  *
  * @author Brian Goetz and Tim Peierls
  */
-
+@Slf4j
 public class NoVisibility {
     private static boolean ready;
     private static int number;
@@ -25,7 +27,7 @@ public class NoVisibility {
             while (!ready) {
                 Thread.yield();
             }
-            System.out.println(number);
+            log.info("number:{}", number);
         }
     }
 }

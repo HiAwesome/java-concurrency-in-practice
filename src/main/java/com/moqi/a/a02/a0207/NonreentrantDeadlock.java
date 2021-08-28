@@ -1,5 +1,7 @@
 package com.moqi.a.a02.a0207;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * NonreentrantDeadlock
  * <p/>
@@ -14,10 +16,11 @@ class Widget {
     }
 }
 
+@Slf4j
 class LoggingWidget extends Widget {
     @Override
     public synchronized void doSomething() {
-        System.out.println(toString() + ": calling doSomething");
+        log.info(": calling doSomething");
         super.doSomething();
     }
 }

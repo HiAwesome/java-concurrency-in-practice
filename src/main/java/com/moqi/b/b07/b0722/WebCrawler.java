@@ -1,6 +1,7 @@
 package com.moqi.b.b07.b0722;
 
 import com.moqi.b.b07.b0721.TrackingExecutor;
+import lombok.extern.slf4j.Slf4j;
 import net.jcip.annotations.GuardedBy;
 
 import java.net.URL;
@@ -22,6 +23,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
  *
  * @author Brian Goetz and Tim Peierls
  */
+@Slf4j
 public abstract class WebCrawler {
     private static final long TIMEOUT = 500;
     private static final TimeUnit UNIT = MILLISECONDS;
@@ -75,7 +77,7 @@ public abstract class WebCrawler {
 
         void markUncrawled() {
             seen.remove(url);
-            System.out.printf("marking %s uncrawled%n", url);
+            log.info("marking :{} un crawled\n", url);
         }
 
         public void run() {
